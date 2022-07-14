@@ -54,7 +54,7 @@ Draw Call是CPU为GPU准备渲染数据，并指令GPU进行一次渲染的操�
 
 光栅化阶段分为四个步骤：三角形设置、三角形遍历、片元着色器、逐片元操作
 
-<img src="/Users/sunzheng/Documents/markdown图片/1.png" alt="1" style="zoom:33%;" />
+<img src="Image/1.png" alt="1" style="zoom:33%;" />
 
 ##### 什么是顶点着色器
 
@@ -141,7 +141,7 @@ $\mathbf{b} =\left( x_{2},y_{2},z_{2}\right)  $
 
 $\mathbf{a} \cdot \mathbf{b} =|\mathbf{a} ||\mathbf{b} |\cos \theta =x_{1}x_{2}+y_{1}y_{2}+z_{1}z_{2}$
 
-<img src="/Users/sunzheng/Documents/markdown图片/叉积.png" alt="叉积" style="zoom: 67%;" />
+<img src="Image/叉积.png" alt="叉积" style="zoom: 67%;" />
 
 ##### 求向量$\mathbf{a}$关于向量$\mathbf{b}$的对称向量$\mathbf{c}$
 
@@ -435,7 +435,7 @@ unity内的**渲染管线（Render pipelines）**包括
 
 - 根据一个坐标到其附近最近的四个像素点的距离进行加权平均，得到一个混合的颜色
 
-<img src="/Users/sunzheng/Documents/markdown图片/双线性滤波.png" alt="双线性滤波" style="zoom: 33%;" />
+<img src="Image/双线性滤波.png" alt="双线性滤波" style="zoom: 33%;" />
 
 ##### 三线性滤波(Trilinear filtering)
 
@@ -529,15 +529,15 @@ varying变量声明一致？
 
 两条直线的交点就是C的位置
 
-<img src="/Users/sunzheng/Documents/markdown图片/矩阵乘法.png" alt="矩阵乘法" style="zoom:50%;" />
+<img src="Image/矩阵乘法.png" alt="矩阵乘法" style="zoom:50%;" />
 
 x左乘A
 
-![x左乘A](/Users/sunzheng/Documents/markdown图片/x左乘A.png)
+![x左乘A](Image/x左乘A.png)
 
 x右乘A
 
-<img src="/Users/sunzheng/Documents/markdown图片/x右乘A.png" alt="x右乘A" style="zoom:50%;" />
+<img src="Image/x右乘A.png" alt="x右乘A" style="zoom:50%;" />
 
 #### 直线扫描转化法
 
@@ -566,7 +566,7 @@ k=0.4
 
 使用步进思想，根据**中点误差项**判断是向右移动还是向右上移动（如果0<k<1)
 
-<img src="/Users/sunzheng/Documents/markdown图片/中点画线.png" alt="中点画线" style="zoom: 33%;" />
+<img src="Image/中点画线.png" alt="中点画线" style="zoom: 33%;" />
 
 直线已经经过点$P$，下一步经过了点$P_{u}$和$P_{d}$，他们的中点是M，我们将M带入直线方程，通过判断大小来决定是不是
 
@@ -642,7 +642,7 @@ $$
 
 编码，把空间分为九个部分，其中中间部分是屏幕，其outcode编码为
 
-<img src="/Users/sunzheng/Documents/markdown图片/裁剪.png" alt="裁剪" style="zoom:50%;" />
+<img src="Image/裁剪.png" alt="裁剪" style="zoom:50%;" />
 
 判断时，两个端点的outcode值为$o_{1}和o_{2}$
 
@@ -653,7 +653,7 @@ $$
 
 ##### Liang-Barsky
 
-<img src="/Users/sunzheng/Documents/markdown图片/梁友栋.png" alt="梁友栋" style="zoom: 25%;" />
+<img src="Image/梁友栋.png" alt="梁友栋" style="zoom: 25%;" />
 
 窗口$Wx_{l}=0,Wx_{r}=4,Wy_{b}=0,Wy_{t}=3$
 
@@ -692,7 +692,7 @@ $u_{min}=\min(1,2/3,3/4=2/3)$
   - 在一个球上切一个“锥形”，锥形的底面积等于$r^2$所对应的角为1球面度
   - 一个完整的球的球面度为$4\pi$
 
-<img src="markdown图片/球面度.png" alt="球面度" style="zoom:50%;" />
+<img src="Image/球面度.png" alt="球面度" style="zoom:50%;" />
 
 ### 为什么BRDF 函数的单位是 1/sr
 
@@ -710,13 +710,13 @@ $$
 
 测量**出射辐射率$L_{0}$**很简单，只要我在出射方向上放一个下面的仪器，对准该点就可以了
 
-<img src="markdown图片/测量辐射率.png" alt="测量辐射率" style="zoom: 33%;" />
+<img src="Image/测量辐射率.png" alt="测量辐射率" style="zoom: 33%;" />
 
 测量**入射辐射率**很麻烦，需要要求光源很小，没有其他光的干扰，所以实际测量的时候不可行，于是不使用，最后BRDF就是出射辐照度/入射辐射率，这两个
 
 而测量**辐照度$E_{i}$**只需要一个面积较小的平面，接收半球方向的**光通量$\Phi $**，$E=\Phi /S $
 
-<img src="markdown图片/测量辐照度.png" alt="测量辐照度" style="zoom:50%;" />
+<img src="Image/测量辐照度.png" alt="测量辐照度" style="zoom:50%;" />
 
 ##### 原因二：数学
 
@@ -743,7 +743,7 @@ Gimbal Lock （万向节死锁，或叫 环向锁节）
 
 可以通过引入四元数解决
 
-<img src="/Users/sunzheng/Documents/markdown图片/万向节锁.png" alt="万向节锁" style="zoom:50%;" />
+<img src="Image/万向节锁.png" alt="万向节锁" style="zoom:50%;" />
 
 ### 有什么常见的遮挡算法
 
@@ -876,7 +876,7 @@ light culling阶段和延迟渲染中光照累计很相似，对于每一个像�
 
 Immediate Mode Rending，即时模式渲染，按drawcall顺序绘制
 
-<img src="markdown图片/IMR.png" alt="IMR" style="zoom:50%;" />
+<img src="Image/IMR.png" alt="IMR" style="zoom:50%;" />
 
 #### TBR
 
@@ -884,7 +884,7 @@ Tile Base Rendering
 
 将画面分割为一个个tile，在VS对每一个tile处理，将结果存到On-Chip Memory上，然后FS读信息，渲染每一个tile
 
-<img src="markdown图片/TBR.png" alt="TBR" style="zoom:50%;" />
+<img src="Image/TBR.png" alt="TBR" style="zoom:50%;" />
 
 作用：**省带宽**，每次传一个小tile，对带宽的压力会比IMR小很多（IMR一次传一整张屏幕）
 
@@ -908,13 +908,13 @@ TBR省带宽了，但是没减少overdraw，而TBDR处理了剔除问题，降�
 
   如图，只有一个采样点时（红点），红圈所在的像素不会被算进去，但MSAA时就会被算进去
 
-  <img src="markdown图片/TBR的MSAA.png" alt="TBR的MSAA" style="zoom:50%;" />
+  <img src="Image/TBR的MSAA.png" alt="TBR的MSAA" style="zoom:50%;" />
 
 ### 视差贴图
 
 视差贴图（Parallax Mapping）效果类似法线贴图，其原理是对纹理采样uv做偏移，不修改顶点信息
 
-<img src="markdown图片/视差贴图.jpeg" alt="视差贴图" style="zoom: 33%;" />
+<img src="Image/视差贴图.jpeg" alt="视差贴图" style="zoom: 33%;" />
 
 原本平坦的表面，如果变成如图的凹凸形状，原本视线会与平面在B处相交，现在则在A处相交，我们采集$A'$点的信息
 
@@ -945,7 +945,7 @@ blenderTex = Texture1 * map.r + Texture2 * map.g + Texture3 * map.b + Texture4 *
 //其中 map.r + map.g + map.b + map.a 恒等于1
 ```
 
-<img src="markdown图片/texture splatting.png" alt="texture splatting"  />
+<img src="Image/texture splatting.png" alt="texture splatting"  />
 
 我们发现这种混合技术要频繁采样，混合四张图，要采9张图（四个材质图，四个法线图，一个splat图），而我们知道采一张大图会比采多个小图性能高很多，那么我们能不能把这九张小图拼成一张大图呢？这就是VT
 
@@ -959,7 +959,7 @@ blenderTex = Texture1 * map.r + Texture2 * map.g + Texture3 * map.b + Texture4 *
 
 一种屏幕后效，画面中心凸起，镜头左右两边在垂直方向上保留画面原样
 
-![帕尼尼投影](markdown图片/帕尼尼投影.jpeg)
+![帕尼尼投影](Image/帕尼尼投影.jpeg)
 
 
 
@@ -991,7 +991,7 @@ $$
 S_{ABCDE}=S_{OBC}+S_{OCD}+S_{ODE}+S_{OEA}+S_{OAB}
 $$
 
-![凹多边形面积](markdown图片/凹多边形面积.png)
+![凹多边形面积](Image/凹多边形面积.png)
 
 
 
@@ -999,7 +999,7 @@ $$
 
 常见的包围盒有AABB和OBB，AABB是轴向的，生成简单，但当物体旋转时效果并不好，OBB是有向的，沿着物体的主成分方向生成最小的一个矩形包围盒，可以随物体旋转
 
-![OBB与AABB](markdown图片/OBB与AABB.jpeg)
+![OBB与AABB](Image/OBB与AABB.jpeg)
 
 
 
@@ -1025,7 +1025,7 @@ blendshape
 
 在制作屏幕后效时（比如雨水），在相机的双锥体上渲染（而不是直接对屏幕四边形），可以得到一种雨水向远处收拢的感觉
 
-<img src="markdown图片/灭点.jpg" alt="灭点" style="zoom:67%;" />
+<img src="Image/灭点.jpg" alt="灭点" style="zoom:67%;" />
 
 ### 选人界面的打光与镜头
 
