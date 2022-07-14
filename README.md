@@ -12,7 +12,7 @@
 
 [开始阅读](https://github.com/Reuben-Sun/Note-of-Graphics/blob/main/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0.md#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6)
 
-这本书是我大二初学TA，看《Unity shader入门精要》和GAMES101的笔记，此外还洗了带我入行的老社长的笔记，里面有许多图形学基础知识与其在Unity中的实现
+这本书是我大二初学TA，看《Unity shader入门精要》和GAMES101的笔记，此外还洗了带我入行的老社长的笔记，里面有许多图形学基础知识与其在Unity中的实现，放在现在看，里面不少内容确实很没劲，而且那时行文还不够流畅，脏了你的眼，实属抱歉
 
 ### 二：《图形学进阶笔记》
 
