@@ -30,3 +30,7 @@
 [开始阅读](https://github.com/Reuben-Sun/Note-of-Graphics/blob/main/TA%E9%9D%A2%E8%AF%95%E9%A2%98.md#ta%E9%9D%A2%E8%AF%95%E9%A2%98)
 
 以问答的形式来记录一些零散的知识点，内容上更加碎片化和简洁（简单）
+
+### 四：《UE学习笔记》
+
+大二参加客户端公开课的时候折腾过UE gameplay，由于直接上手U++，直接被劝退了，以至于很长时间没有学过UE，但作为TA，怎么可以不学UE呢？Unity TA的日常就是把UE的功能抄过来（不是）
