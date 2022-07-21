@@ -1071,5 +1071,23 @@ blendshape
 
 - 泪腺
 
+### 移动端Deferred 
 
+移动端延迟与GPU架构强相关
 
+- iOS：one pass deferred
+- Adreno：frameBuffer fetch deferred
+- Mali：pixel loacl storage deferred 
+  - 将GBuffer存在on-clip mem上，于是就减少了IO消耗
+
+### 角色灯光术语
+
+#### 光比
+
+指物体受光面亮度与阴影面亮度的比值，比值越大，明暗对比越强
+
+常出现在黑暗空间爆炸光效照亮角色
+
+#### 二值化光
+
+照明时，灯光颜色在固定好的暗部颜色和亮部颜色之间插值
