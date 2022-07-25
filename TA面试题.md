@@ -1091,3 +1091,22 @@ blendshape
 #### 二值化光
 
 照明时，灯光颜色在固定好的暗部颜色和亮部颜色之间插值
+
+### 抗锯齿
+
+抗锯齿有两大类，时间层面和空间层面，但本质都是增加采样点数
+
+- 空域抗锯齿
+  - MSAA（MultiSampling Anti-Aliasing）：一个像素采多个点
+    - On-Clip MSAA
+  - FXAA（Fast Approximately -Aliasing）：卷积模糊
+  - SMAA（Enhanced Subpixel Morphological）：边缘检测--矢量化--像素混合
+- 时域抗锯齿
+  - TAA（Temporal Antialiasing），一帧采一下，几帧后就等于采了很多点
+  ![TAA](Image/TAA.png)
+
+### svoGI
+
+Sparse Voxel Octree（稀疏体素八叉树） GI，是VXGI的进阶版本
+
+### 无偏渲染
