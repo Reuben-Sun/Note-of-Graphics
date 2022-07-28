@@ -36,3 +36,13 @@
 [开始阅读](https://github.com/Reuben-Sun/Note-of-Graphics/blob/main/UE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md#ue%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0)
 
 大二参加客户端公开课的时候折腾过UE gameplay，由于直接上手U++，直接被劝退了，以至于很长时间没有学过UE，但作为TA，怎么可以不学UE呢？Unity TA的日常就是把UE的功能抄过来（不是）
+
+只不过最近有些鸽，没怎么更新
+
+### 五：《DCC工具开发笔记》
+
+[开始阅读](https://github.com/Reuben-Sun/Note-of-Graphics/blob/main/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0.md#dcc%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0)
+
+游戏开发不只要考虑效果、运行效率、包体大小，还要考虑开发效率，近些年一直在谈游戏工业化，其实给工具向TA一个新的增长点（这个活其实很牛马，只不过谁不牛马呢？）
+
+工具向TA是一个很大的工种，像maya python插件、houdini、SD都是TA找工作必备的技能，然而这些工具的用户大多为美术，所以在学习时会被大量美术教程干扰（尤其是各种卖课的），真正程序向资料反而很稀缺，我努力整理了一点
