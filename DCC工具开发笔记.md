@@ -88,3 +88,4 @@ def printVertexPos():
 
 ### 我的工具
 
+[平滑法线](https://github.com/Reuben-Sun/Note-of-Graphics/blob/main/Code/MayaPython/SmoothNormal.py)
