@@ -1077,8 +1077,25 @@ blendshape
 
 - iOS：one pass deferred
 - Adreno：frameBuffer fetch deferred
+  - 提前绑定（开辟）好MRT，使用时RT不动，Pass动
+
 - Mali：pixel loacl storage deferred 
   - 将GBuffer存在on-clip mem上，于是就减少了IO消耗
+
+#### 移动端SubPass
+
+Unity移动端使用Metal和Vulkan API时，都可以使用SubPass，但略有不同
+
+在同一个RenderPass的不同SubPass间切换，是不会带来带宽消耗的
+
+- Metal
+  - 支持FrameBufferFetch，即可以在一个SubPass中对RT读写
+  - 不支持在Tile上读取深度
+- Vulakn
+  - 不支持FrameBufferFetch
+  - 支持在Tile读深度（mali设备读浮点纹理比读tile的深度更高效）
+
+由于Metal不支持读深度，而mali Vulkan读深度效率比读RT差，所以Metal和Vulkan都在GBuffer Pass时额外生成一张深度RT，在LightingPass里用
 
 ### 角色灯光术语
 
@@ -1110,3 +1127,22 @@ blendshape
 Sparse Voxel Octree（稀疏体素八叉树） GI，是VXGI的进阶版本
 
 ### 无偏渲染
+
+### SST
+
+Sparse Shadow Tree，一种大范围阴影渲染方案
+
+[论文地址](https://www.activision.com/cdn/research/SparseShadowTree.pdf)
+
+### ShadowCache
+
+对静态物体和动态物体使用两套CSM，一套只绘制动态物体，每帧刷新，一套只绘制静态物体，低频刷新
+
+低频刷新的CSM被称为ShadowCache
+
+### TressFX
+
+一种实时毛发渲染系统
+
+
+
