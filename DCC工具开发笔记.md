@@ -44,7 +44,9 @@ createWindow()
 
 ![maya脚本](Image/maya脚本.png)
 
+如果你的脚本编辑器没有显示，那么在脚本编辑器中设置**显示二者**
 
+![显示二者](Image/显示二者.jpg)
 
 ### 常用API
 
@@ -88,4 +90,17 @@ def printVertexPos():
 
 ### 我的工具
 
+#### 平滑法线
+
 [平滑法线](https://github.com/Reuben-Sun/Note-of-Graphics/blob/main/Code/MayaPython/SmoothNormal.py)
+
+#### 模型展2UV
+
+```python
+def createFunc():
+   cmds.polySphere(n='sph')
+
+def PickUV2():
+    cmds.polyAutoProjection('sphShape.f[*]', cm = 1, uvs= 'map2')
+```
+
