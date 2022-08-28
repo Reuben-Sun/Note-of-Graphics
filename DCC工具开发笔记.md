@@ -117,5 +117,16 @@ def pickUV2():
         print "map2 has been exited"
 ```
 
+#### 动画clip
 
+```python
+#输出选中的动画片段的开始帧和结束帧
+def printClip():
+	list = cmds.ls(selection=True)
+    for p in list:
+        start = cmds.getAttr('%s.clipStart ' % (p))
+        end = cmds.getAttr('%s.clipStart ' % (p)) + cmds.getAttr('%s.clipDuration ' % (p))
+        print start
+        print end
+```
 
