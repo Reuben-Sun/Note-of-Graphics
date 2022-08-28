@@ -97,10 +97,25 @@ def printVertexPos():
 #### 模型展2UV
 
 ```python
+#创建一个名称为sph的多边形
 def createFunc():
    cmds.polySphere(n='sph')
 
-def PickUV2():
-    cmds.polyAutoProjection('sphShape.f[*]', cm = 1, uvs= 'map2')
+#删除除了map1以外所有的uvmap
+def deleteUVs():
+    au = cmds.polyUVSet(query=True, allUVSets=True)
+    for j in range(len(au)-1):
+        cmds.polyUVSet(delete=True, uvSet=au[j+1])
+
+#自动展选中物体的2UV，并命名为map2
+def pickUV2():
+    list = cmds.ls(dag=1, selection=True)
+    au = cmds.polyUVSet(query=True, allUVSets=True)
+    if(len(au) == 1):
+        cmds.polyAutoProjection(list[1] + '.f[*]', cm = 1, uvs= 'map2')
+    else:
+        print "map2 has been exited"
 ```
+
+
 
