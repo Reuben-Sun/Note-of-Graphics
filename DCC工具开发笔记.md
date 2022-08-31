@@ -88,7 +88,7 @@ def printVertexPos():
         print cmds.xform(v, query = True, translation = True, worldSpace = True)
 ```
 
-### 我的工具
+### 工具实例
 
 #### 平滑法线
 
@@ -128,5 +128,24 @@ def printClip():
         end = cmds.getAttr('%s.clipStart ' % (p)) + cmds.getAttr('%s.clipDuration ' % (p))
         print start
         print end
+```
+
+#### 打开文件
+
+```python
+def openFile():
+   path = 'C:/Users/Admin/Desktop/多边形.fbx'
+   cmds.file(path, i=True)
+```
+
+#### 开关UV编辑器
+
+```python
+def openUVPanel():
+   if cmds.window('polyTexturePlacementPanel1Window', ex=1):
+        cmds.deleteUI('polyTexturePlacementPanel1Window')
+        mel.eval('toggleUVToolkit;')
+   else:
+        mel.eval('texturePanelShow;')
 ```
 
