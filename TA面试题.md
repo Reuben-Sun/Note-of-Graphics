@@ -1144,5 +1144,59 @@ Sparse Shadow Tree，一种大范围阴影渲染方案
 
 一种实时毛发渲染系统
 
+### XGen
 
+一个maya的头发制作工具
 
+[maya文档](https://knowledge.autodesk.com/zh-hans/support/maya/learn-explore/caas/CloudHelp/cloudhelp/2018/CHS/Maya-CharEffEnvBuild/files/GUID-C0470142-600B-4615-8110-EC779934DF5F-htm.html)
+
+### Vulkan的基本概念
+
+Vulkan对象主要分为三个部分，每个部分都有一个主对象
+
+#### Instance
+
+第一个Vulkan对象，用于连接应用程序和Vulkan运行时
+
+#### PhysicalDevice
+
+显卡
+
+- 可以枚举图形队列
+- 可以枚举内存堆和内存类型
+
+#### Device
+
+逻辑设备
+
+- Queue：用于向GPU传递命令（类比SRP的上下文）
+- CommandPool：用于创建CommandBuffer
+- CommandBuffer：命令缓冲区，可以通过`vkQueueSubmit`提交到Queue中
+- Sampler：一组采样器状态，用于设置滤波模式、寻址模式等
+- Buffer&Image：资源，渲染时不会直接使用
+- BufferView&ImageView：对资源的解释（Buffer&Image中，我们所需要的部分），渲染时直接使用（类比SRP的RT）
+- SurfaceKHR：控制屏幕窗口，与平台相关
+- SwapchainKHR：交换链，内含一组图片，用于实现显示交换
+  - 立即渲染
+  - 双缓冲
+  - 多重缓冲
+- Descriptor：描述符，用于访问资源（顶点信息，缓冲区，图像，采样器）
+  - DescriptorSet
+  - DescriptorSetLayout
+  - DescriptorPool
+- FrameBuffer：ImageView的集合（RT、MRT）
+  - Attachment：附件（类比SRP的RenderTarget）
+    - Attachment初始化：Load Action
+    - Attachment写回内存：Save Action
+- RenderPass：一次渲染流水线的执行，将信息输出到FBO的Attachments中
+  - SubPass：渲染的中间Pass，他们的目标不是FBO，而是一些临时的目标
+- Pipeline：管线
+  - ComputePipeline
+  - GraphicsPipeline
+    - PipelineLayout
+    - ShaderModule：使用SPIR-V进行着色器编译
+    - PipelineCache
+- Query：查询，用于得到某指令的执行情况
+- Fence&Semaphore
+  - Fence：栅栏，用于CPU和GPU同步
+  - Semaphore：信号量：用于GPU内部的同步（对客户端黑盒）
