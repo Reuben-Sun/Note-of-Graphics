@@ -51,7 +51,8 @@ createWindow()
 ### 常用API
 
 ```python
-import maya.cmds as cmds
+import maya.cmds as cmds	#这是一个将MEL指令用python封装的库，适合面向过程编程
+import maya.OpenMaya as om	#拥有cmd没有的功能，运行效率更高
 ```
 
 - 删除：`cmds.delete(p)`
