@@ -57,6 +57,6 @@
 
 ### 七：《光学》
 
-[开始阅读](https://github.com/Reuben-Sun/Note-of-Graphics/blob/main/%E5%85%89%E5%AD%A6.md#%E5%85%89%E5%AD%A6)
+[开始阅读](https://github.com/Reuben-Sun/Note-of-Optics#note-of-optics)
 
 研究基于物理的渲染，必然要先研究物理
