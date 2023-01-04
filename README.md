@@ -60,3 +60,9 @@
 [开始阅读](https://github.com/Reuben-Sun/Note-of-Optics#note-of-optics)
 
 研究基于物理的渲染，必然要先研究物理
+
+### 八：《物理动画》
+
+[开始阅读](https://github.com/Reuben-Sun/Note-of-Graphics/blob/main/%E7%89%A9%E7%90%86%E5%8A%A8%E7%94%BB.md)
+
+物理动画相当有前途，发展迅猛，而且相对紧缺（这句话有时效性），只不过门槛比较高，不是很容易学，我也不是做这方面的，基本就了解了解概念，大部分内容都是直接抄的
