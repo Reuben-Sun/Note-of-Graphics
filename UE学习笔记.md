@@ -65,6 +65,37 @@ NewObject<UxxxClass>();
 GetWorld()->SpawnActor<AxxxClass>();
 ```
 
+### UObject
+
+生命周期
+
+#### 创建
+
+- 内存分配，返回一个分配好尺寸但没有初始化的指针（你steam下游戏也是先清出一片区域，再正式下载）
+- 对象构建
+  - 创建`FObjectInitializer`
+  - 将`FObjectInitializer`作为参数传递给函数指针`ClassConstructor`，得到对象
+
+#### 反序列化
+
+- 获取类信息`GetClass`
+- 判断类信息是否载入，若没有载入则进行预载
+- 载入名字、Outer、类信息（类信息保存在ObjClass对象中，感觉和Java的类对象机制很接近）
+- 载入脚本成员变量信息
+
+反序列化的规则：
+
+- 只反序列化`UPROPERTY`标记，且不等于默认值的数据
+- 先创建出对象，再反序列化（还原数据）
+- 对象具有所属关系
+- 若一个对象所有信息和原始对象相同，尽管他们在内存的位置不同（指针值不同），该对象就是原始对象
+
+#### 释放消亡
+
+UObject无法手动释放，但是可以被请求，将其标记后等待引擎将其释放
+
+GC分为两步，析构、回收
+
 ## 蓝图
 
 - UPROPERTY：注册成员变量到蓝图
@@ -168,4 +199,89 @@ UE_LOG(log分类，log类型，log内容)；
 ### 图片
 
 `ImagerWrapper`
+
+## 模块
+
+### 模块
+
+模块就像Unity的Package，用于整理文件结构，便于编译
+
+一个模块包含
+
+- `Public`文件夹
+  - `.h`文件
+- `Private`文件夹
+  - `.cpp`文件
+- `模块名.build.cs`文件（继承自`ModuleRules`类）
+
+### UBT
+
+`Unreal Build Tool.cs`中有Main函数，主要做三个功能
+
+1. 收集信息：环境变量、目录信息等
+2. 确定生成的目标类型
+3. 生成构建
+
+### UHT
+
+`Unreal Header Tool`，一个基于引擎代码，但不需要引擎完全启动，编译后得到一个`.exe`文件的程序
+
+## 引擎核心
+
+### 内存分配
+
+提供了多套内存分配器，其中包含TBB（TBB的内存分配一大特点就是可以通过代理的方式全局替换new、malloc等操作符），TBB见《高性能C+++》笔记，那边有详细介绍
+
+TBB内存分配主要包括
+
+- LTS，线程内存池，每个线程会独立拥有一个局部的内存池，互不影响，但最后需要归约
+- 缓存对齐，通过在变量间填充大量无效信息，使得不同变量处于不同缓存行中，于是避免了假共享问题
+
+### 引擎初始化
+
+- PreInit
+  - 接收cmd命令，判断启动模式
+  - 初始化游戏主线程（将当前线程当作主线程）
+  - 初始化随机数
+  - 初始化TaskGraph系统，设置线程数量，启动线程池
+  - 调用`LoadCoreModules`，启动`CoreUObject`模块
+  - 启动引擎、渲染、动画蓝图、Slate、贴图压缩、地形模块
+- Init
+  - 各个模块初始化，并执行所有`PostEngineInit`函数
+  - 进入主循环
+
+### 主循环
+
+游戏主线程是一个while循环，循环内有一个`Trick`，可以类比Unity的Update
+
+### 并发并行
+
+- 线程
+- 并行
+- 并发
+- Task Graph
+- Std::Thread
+
+## 渲染
+
+### 渲染线程
+
+UE的游戏线程和渲染线程分离（事实上现在基本所有引擎都这样）
+
+在引擎Init时，会调用`StartRenderingThread`函数，启动渲染线程
+
+该函数主要做：
+
+1. 创建渲染线程
+2. 从TaskGraph中取任务
+3. 注册渲染线程
+4. 注册Trick
+
+### 运行
+
+渲染线程的主要执行内容在`RenderingThreadMain`中，游戏线程可以通过`EQUEUE_Render_COMMAND`等宏命令向渲染线程的TaskMap中添加渲染任务，渲染线程提取这些命令后将其添加到`RHICommandList`中，最后传递到GPU中
+
+![渲染线程与RHI](Image/渲染线程与RHI.png)
+
+
 
