@@ -266,7 +266,7 @@ TBB内存分配主要包括
 
 ### 渲染线程
 
-UE的游戏线程和渲染线程分离（事实上现在基本所有引擎都这样）
+UE的游戏线程和渲染线程分离（事实上现在基本所有引擎都这样），渲染线程是游戏线程的“附庸”
 
 在引擎Init时，会调用`StartRenderingThread`函数，启动渲染线程
 
@@ -282,6 +282,58 @@ UE的游戏线程和渲染线程分离（事实上现在基本所有引擎都这
 渲染线程的主要执行内容在`RenderingThreadMain`中，游戏线程可以通过`EQUEUE_Render_COMMAND`等宏命令向渲染线程的TaskMap中添加渲染任务，渲染线程提取这些命令后将其添加到`RHICommandList`中，最后传递到GPU中
 
 ![渲染线程与RHI](Image/渲染线程与RHI.png)
+
+### RHI
+
+RHI（Render Hardware Interface），对图形库的一种封装，以供上层使用
+
+|                         | UE5中含义                                    |
+| ----------------------- | -------------------------------------------- |
+| FRenderResource         | 渲染线程中的资源，如贴图、顶点buffer、顶点id |
+| FRHIResource            | GPU侧的资源，如Texture2D、3D、Cube           |
+| DynamicRHI              | 所有图形API适配器的基类                      |
+| RHI                     |                                              |
+| RHIContext              | RHI命令上下文                                |
+| RHICommandList          | RHI指令队列                                  |
+| FRHICommandListExecutor | 将RHI指令翻译为图形API                       |
+
+### 多线程
+
+#### DX11
+
+DX11尝试从硬件层面解决多线程渲染，提供了两种设备上下文：即时上下文（Immediate Context）和延迟上下文（Deferred Context）
+
+延迟上下文多线程并行，最后将生成的CommandList归约到即时上下文中，由即时上下文Execute
+
+对于某些支持硬件级加速的驱动，延迟上下文可以将CommandList也直接提交给图形驱动
+
+![DX11多线程](Image/DX11多线程.png)
+
+DX11的多线程，感觉就是一种简单的异步，仅仅是加速了指令录制，减少了等待
+
+#### DX12
+
+取消了DX11的渲染上下文，不再使用DrawCall，而是直接使用CommandList来调用图形驱动
+
+1. DX12渲染线程并行进行指令录制，生成一些命令列表（CommandList）
+2. 然后将这些命令列表提交给命令队列（CommandQueue）中
+3. 命令队列根据指令类型，将指令放入不同的GPU引擎中
+
+命令队列有三种：复制队列（Copy Queue）、计算队列（Compute Queue）、3D队列
+
+GPU引擎有三种：复制引擎、计算引擎、3D引擎
+
+命令队列和GPU引擎都可以并行执行
+
+<img src="Image/DX12多线程.png" alt="DX12多线程" style="zoom: 50%;" />
+
+
+
+
+
+
+
+
 
 
 
