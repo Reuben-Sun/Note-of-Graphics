@@ -14,6 +14,19 @@ Windows应用程序使用事件驱动（详情可以去看WPF）
 
 Windows应用程序的入口点是`WinMain`函数，主程序会创建一个窗口，并进入消息循环，检索处理操作系统发来的消息，并对其进行相应
 
+| message        | 发送时机                      |
+| -------------- | ----------------------------- |
+| WM_CHAR        | 键盘输入一个字符              |
+| WM_COMMAND     | 使用菜单栏、控件              |
+| WM_CREATE      | 创建一个窗口                  |
+| WM_DESTROY     | 一个窗口被摧毁                |
+| WM_LBUTTONDOWN | 按下鼠标左键                  |
+| WM_LBUTTONUP   | 鼠标左键被释放                |
+| WM_MOUSEMOVE   | 鼠标指针被移动                |
+| WM_PAINT       | 一个窗口需要重新粉刷          |
+| WM_QUIT        | 应用程序即将终止，WinMain返回 |
+| WM_SIZE        | 调整窗口大小                  |
+
 当接收到`WM_QUIT`消息时（比如用户关闭窗口），会退出消息循环，应用程序即将结束，`WinMain`函数返回
 
 ### COM
@@ -106,13 +119,87 @@ VS提供了一套批注系统，SAL（Source code annotation language）
 
 ![DX创建窗口](Image/DX创建窗口.png)
 
-WindowProc是一个回调函数，用于处理传给窗口的消息
+- WindowProc是一个回调函数，用于处理传给窗口的消息
 
-`OnInt()`是`D3D12HelloWindow`的生命周期函数，包含两个部分，加载管线和加载资源
+
+- `OnInt()`是`D3D12HelloWindow`的生命周期函数，包含两个部分，加载管线和加载资源
 
 ![OnInit](Image/OnInit.png)
 
+- 描述符堆（Descriptor Heap），用于CPU向GPU传递资源（比如数组、贴图），告诉GPU去哪里访问这些资源
+  - 描述资源的类型、维度、GPU虚拟地址、硬件信息
+  - 我们将描述符绑定在**slots**上，GPU可以通过访问slots上的描述符找到资源
 
+- 栅栏（Fence），可以将其插入命令队列以实现同步
+
+DX12支持多线程渲染，命令队列和命令列表的关系如下
+
+![DX12多线程](Image/DX12多线程.png)
+
+### 硬件架构
+
+- CPU
+  - Cache占绝大部分面积
+  - ALU、控制单元少，但复杂强大
+- GPU
+  - 计算核心占绝大部分面积
+  - 计算核心数量极多，个头小，可编程，支持并行
+
+![CPU和GPU](Image/CPU和GPU.png)
+
+### 渲染流水线
+
+![rendering-pipeline](Image/rendering-pipeline.png)
+
+### 资源管理
+
+#### 内存
+
+GPU可以访问四种内存
+
+- 专用视频内存（Dedicated video memory）：我们分配GPU资源最常用的地方
+- 专用系统内存（Dedicated system memory）：GPU内部专用内存，应用程序不能使用
+- 共享系统内存（Shared system memory）：CPU可见的显存，常用于CPU向GPU传递数据
+- CPU系统内存（CPU system memory）：CPU可以任意访问，但GPU要通过PCI-e总线访问，速度极慢
+
+#### 视图和描述符
+
+视图=描述符≈资源指针
+
+| 简称     | 全称                  | 意义                 |
+| -------- | --------------------- | -------------------- |
+| CBV      | Constant buffer view  | 描述常量缓冲区       |
+| UAV      | Unordered access view | 常用于多线程读写     |
+| SRV      | Shader resource view  | 描述只读纹理和缓冲区 |
+| Samplers |                       | 采样器               |
+| RTV      | Render Target View    | 描述渲染目标         |
+| DSV      | Depth Stencil View    | 描述深度缓冲区       |
+| IBV      | Index Buffer View     | 描述顶点索引缓冲区   |
+| VBV      | Vertex Buffer View    | 描述顶点缓冲区       |
+| SOV      | Stream Output View    | 描述流输出缓冲区     |
+
+#### 资源状态
+
+资源的多线程读写是冲突的，于是要通过资源状态实现互斥
+
+GPU使用转化资源的状态来指定资源的预期用途，比如要读一张贴图，该贴图必须处于读取状态
+
+DX12使用`ResourceBarrier`管理资源状态
+
+#### 根签名
+
+在HLSL中，我们可以声明一个变量
+
+```hlsl
+Texture2D g_texture : register(t0);
+```
+
+该变量的类型是SRV，绑定到`t`的第0槽
+
+- `t`：SRV
+- `s`：Samplers
+- `u`：UAV
+- `b`：CBV
 
 ## 参考
 
