@@ -6,6 +6,8 @@
 
 安装[PIX](https://devblogs.microsoft.com/pix/download/)
 
+安装Visual Studio 2019
+
 ### Windows应用程序
 
 Windows应用程序使用事件驱动（详情可以去看WPF）
@@ -51,9 +53,9 @@ DirectX Graphics Infrastructure (DXGI)，负责管理一些low-level的任务，
 
 <img src="Image/DXGI.png" alt="DXGI" style="zoom:67%;" />
 
-### 创建一个窗口
+### 依赖
 
-添加DX12依赖
+VS添加DX12依赖
 
 ```
 打开VS--项目--属性--配置属性--链接器--输入--附加依赖项
@@ -61,15 +63,46 @@ DirectX Graphics Infrastructure (DXGI)，负责管理一些low-level的任务，
 
 ![image-20230112010632277](Image/添加DX依赖.png)
 
+cmake添加依赖
+
+```cmake
+cmake_minimum_required(VERSION 3.20)
+project(DXEngine)
+set(CMAKE_CXX_STANDARD 17)
+
+file(GLOB_RECURSE srcs CONFIGURE_DEPENDS src/*.cpp src/*.h)
+
+add_executable(DXEngine WIN32 ${srcs})
+target_include_directories(DXEngine PUBLIC include)
+
+target_link_libraries(DXEngine PRIVATE
+        d3d12.lib dxgi.lib dxguid.lib uuid.lib
+        kernel32.lib user32.lib
+        comdlg32.lib advapi32.lib shell32.lib
+        ole32.lib oleaut32.lib
+        runtimeobject.lib
+        )
+```
+
+
+
 ### 批注
 
 VS提供了一套批注系统，SAL（Source code annotation language）
 
 ### d3dx12.h
 
-https://stackoverflow.com/questions/65294611/d3dx12-h-gives-a-bunch-of-errors
+这是一个`.h`文件，内含许多DX开发常用函数，将该文件复制到项目中
 
+这个文件中使用了大量Windows SDK，因此你最好用VS2019的Toolchains（Clion的用户使用内置的MinGW可能会报一堆错）
 
+至于为什么要求是VS2019，是因为这个文件与Windows10 SDK版本强相关，VS2019的SDK直接就是对应版本，2017需要手动下载，2015直接没法用
+
+[详情](https://stackoverflow.com/questions/65294611/d3dx12-h-gives-a-bunch-of-errors)
+
+### 创建一个窗体
+
+Win32的WinMain函数是这样的
 
 
 
