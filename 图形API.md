@@ -100,13 +100,17 @@ VS提供了一套批注系统，SAL（Source code annotation language）
 
 [详情](https://stackoverflow.com/questions/65294611/d3dx12-h-gives-a-bunch-of-errors)
 
-### 创建一个窗体
+### 创建第一个窗体
 
-Win32的WinMain函数是这样的
+这个窗体啥也没有，就输出一个蓝色屏幕，下面是创建这个窗体的过程
 
+![DX创建窗口](Image/DX创建窗口.png)
 
+WindowProc是一个回调函数，用于处理传给窗口的消息
 
+`OnInt()`是`D3D12HelloWindow`的生命周期函数，包含两个部分，加载管线和加载资源
 
+![OnInit](Image/OnInit.png)
 
 
 
