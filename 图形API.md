@@ -61,9 +61,13 @@ DirectX Graphics Infrastructure (DXGI)，负责管理一些low-level的任务，
 
 ![image-20230112010632277](Image/添加DX依赖.png)
 
+### 批注
 
+VS提供了一套批注系统，SAL（Source code annotation language）
 
+### d3dx12.h
 
+https://stackoverflow.com/questions/65294611/d3dx12-h-gives-a-bunch-of-errors
 
 
 
@@ -80,3 +84,5 @@ DirectX Graphics Infrastructure (DXGI)，负责管理一些low-level的任务，
 [learning-DX12](https://www.3dgep.com/learning-directx-12-1/)
 
 [LearningDirectX](https://paminerva.github.io/docs/LearnDirectX/LearnDirectX)
+
+[code](https://github.com/microsoft/DirectX-Graphics-Samples/tree/master/Samples/Desktop)
