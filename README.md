@@ -69,4 +69,6 @@
 
 ### 九：《图形API》
 
-作为一个游戏引擎，尤其是图形引擎，必须熟练掌握各种图形API
+作为一个游戏引擎，尤其是图形引擎，必须熟练掌握各种图形API，主要介绍了DX12、Metal图形库
+
+[开始阅读](https://github.com/Reuben-Sun/Note-of-Graphics/blob/main/%E5%9B%BE%E5%BD%A2API.md)
