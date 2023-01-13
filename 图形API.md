@@ -14,7 +14,17 @@ Windows 10/11系统
 
 Windows应用程序使用事件驱动（详情可以去看WPF）
 
-Windows应用程序的入口点是`WinMain`函数，主程序会创建一个窗口，并进入消息循环，检索处理操作系统发来的消息，并对其进行相应
+Windows应用程序的入口点是`WinMain`函数
+
+```c++
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int nCmdShow)
+{
+    LearnDX::D3D12HelloWindow sample(1280, 720, L"D3D12 Hello Window");
+    return LearnDX::Win32Application::Run(&sample, hInstance, nCmdShow);
+}
+```
+
+主程序会创建一个窗口，并进入消息循环，检索处理操作系统发来的消息，并对其进行相应
 
 | message        | 发送时机                      |
 | -------------- | ----------------------------- |
@@ -247,6 +257,39 @@ Texture2D g_texture : register(t0);
 
 ![PSO](Image/PSO.png)
 
+
+
+## Metal
+
+一个优雅的图形库
+
+### 环境搭建
+
+MacOS，强烈建议使用M1/M2芯片
+
+Xcode
+
+### SwiftUI
+
+SwiftUI是苹果推出的新一代UI框架，可以开发跨苹果各种设备（手机，mac、手表、TV）的软件
+
+程序入口：
+
+```swift
+@main
+struct TinyMetalEngineApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView().navigationTitle("Tiny Metal Engine")
+        }
+    }
+}
+```
+
+![MetalApp](Image/MetalApp.png)
+
+![MetalRender](Image/MetalRender.png)
+
 ## 参考
 
 [龙书代码](https://github.com/d3dcoder/d3d12book)
@@ -255,4 +298,6 @@ Texture2D g_texture : register(t0);
 
 [LearningDirectX](https://paminerva.github.io/docs/LearnDirectX/LearnDirectX)
 
-[code](https://github.com/microsoft/DirectX-Graphics-Samples/tree/master/Samples/Desktop)
+[LearningDirectX Githunb](https://github.com/microsoft/DirectX-Graphics-Samples/tree/master/Samples/Desktop)
+
+[Metal by tutorials](https://github.com/kodecocodes/met-materials/tree/editions/3.0)
