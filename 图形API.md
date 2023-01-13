@@ -2,7 +2,9 @@
 
 ## DX12
 
-### 开始
+### 环境搭建
+
+Windows 10/11系统
 
 安装[PIX](https://devblogs.microsoft.com/pix/download/)
 
@@ -87,7 +89,7 @@ file(GLOB_RECURSE srcs CONFIGURE_DEPENDS src/*.cpp src/*.h)
 
 add_executable(DXEngine WIN32 ${srcs})
 target_include_directories(DXEngine PUBLIC include)
-
+# 比较重要的是d3d12.lib dxgi.lib
 target_link_libraries(DXEngine PRIVATE
         d3d12.lib dxgi.lib dxguid.lib uuid.lib
         kernel32.lib user32.lib
@@ -147,9 +149,47 @@ DX12支持多线程渲染，命令队列和命令列表的关系如下
 
 ![CPU和GPU](Image/CPU和GPU.png)
 
-### 渲染流水线
+### 渲染管线
 
 ![rendering-pipeline](Image/rendering-pipeline.png)
+
+#### 输入汇编器
+
+输入汇编器（Input Assembler）
+
+- 输入：顶点索引和顶点缓冲
+- 行为：组装成图元
+- 输出：传给顶点着色器
+
+网格（Mesh）是由图元（通常为三角形）组成的几何体
+
+顶点缓冲区（vertex buffers）存储了顶点相关的数据
+
+输入布局（Input layout）描述了顶点缓冲区的布局，为顶点属性指定语意，使得输入汇编器能读懂顶点缓冲区
+
+索引缓冲（index buffers）内含顶点索引，通过指向顶点缓冲区来组成图元
+
+![Mesh](Image/Mesh.png)
+
+原始拓扑（Primitive topologies），描述了图元间的连接、邻接关系
+
+![topology](Image/topology.png)
+
+特别的，Triangle Strip的三个顶点满足公式
+$$
+\Delta_i=\{i, i+(1+i\%2), i+(2-i\%2)\}
+$$
+
+#### 光栅器
+
+光栅器（Rasterizer），发生在片元着色器之前
+
+- 输入：NDC空间的2D图元
+- 行为：
+  - 剔除：裁剪掉视口外的图元，剔除背面（可选）
+  - 画线：获得图元所覆盖的像素区域
+  - 插值：根据重心坐标和顶点属性进行插值
+- 输出：传给片元着色器
 
 ### 资源管理
 
@@ -200,6 +240,12 @@ Texture2D g_texture : register(t0);
 - `s`：Samplers
 - `u`：UAV
 - `b`：CBV
+
+### 管道状态
+
+管道状态（pipeline state object ，PSO）定义了渲染管线的每个阶段的行为，PSO创建后不可变
+
+![PSO](Image/PSO.png)
 
 ## 参考
 
