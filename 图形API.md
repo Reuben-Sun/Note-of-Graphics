@@ -115,6 +115,27 @@ target_link_libraries(DXEngine PRIVATE
 
 VS提供了一套批注系统，SAL（Source code annotation language）
 
+### 字符串
+
+Windows的字符串是一大噩梦
+
+代码的字符编码主要有两种，`ASCII`和`UNICODE`，Windows内部使用了utf-16存储字符串，并支持两种API，用以支持`ASCII`和`UNICODE`，他们分布以`A`和`W`结尾
+
+为了支持两种API，于是推出了一种新的字符类型**宽字符**：`wchat_t`，微软将其重命名为`WCHAR`
+
+宽字符在使用时要在前面加`L`，比如`L'a'`
+
+微软又将字符串进行重命名，提出了窄字符串STR和宽字符串WSTR，并给出了他们的指针`LPSTR`和`LPWSTR`
+
+```c++
+LPSTR = const char*
+LPWSTR = const wchar_t*
+```
+
+如果你用VS开发，可以设置整个项目使用`UNICODE`，但我不建议这样做
+
+强烈推荐当你要使用字符串函数时，明确使用后缀是`A`还是`W`，并且要注意你`WindowProc`的类型（是使用`DefWindowProcW`还是`DefWindowProcA`）
+
 ### d3dx12.h
 
 这是一个`.h`文件，内含许多DX开发常用函数，将该文件复制到项目中
