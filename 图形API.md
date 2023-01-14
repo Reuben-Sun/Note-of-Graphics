@@ -278,7 +278,11 @@ Texture2D g_texture : register(t0);
 
 ![PSO](Image/PSO.png)
 
+### Bundles
 
+捆绑包（Bundles），用于将少量命令组合在一起，方便使用
+
+Bundles只能提交给CommandList，不能直接提交给命令队列
 
 ## Metal
 
