@@ -373,13 +373,40 @@ GPU引擎有三种：复制引擎、计算引擎、3D引擎
 
 <img src="Image/DX12多线程.png" alt="DX12多线程" style="zoom: 50%;" />
 
+### 渲染管线
 
+![UE5RenderingPipeline](Image/UE5RenderingPipeline.jpg)
 
+## 物理
 
+UE5使用Chaos替代PhysX作为新的物理引擎
 
+| Chaos                 | PhysX    |
+| --------------------- | -------- |
+| 基于位置（PBD）       | 基于速度 |
+| 支持大世界坐标（LWC） | 不支持   |
+| 支持网络同步          | 不支持   |
 
+### 异步
 
+UE5可以启用异步物理模拟，物理线程会作为单独的线程运行（类似渲染线程）
 
+由于是独立线程，物理模拟可以以固定的间隔运行，既可以提高精确度，也方便C/S网络同步
 
+但开启异步后物理线程无法即时获取游戏线程的输入，有可能影响游戏逻辑
 
+### 功能
+
+- 布料
+- 破坏
+- 载具
+- 场
+
+### PBD
+
+[论文](https://matthias-research.github.io/pages/publications/PBDBodies.pdf)
+
+### 大世界
+
+World partition
 
