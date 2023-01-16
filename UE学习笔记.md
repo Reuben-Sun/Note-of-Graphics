@@ -262,6 +262,8 @@ UE_LOG(log分类，log类型，log内容)；
 
 ## 引擎核心
 
+[UE Begin Play](https://dev.epicgames.com/community/learning/paths/0w/beginplay)
+
 ### 内存分配
 
 提供了多套内存分配器，其中包含TBB（TBB的内存分配一大特点就是可以通过代理的方式全局替换new、malloc等操作符），TBB见《高性能C+++》笔记，那边有详细介绍
@@ -298,7 +300,13 @@ UE是一个多线程引擎，将游戏逻辑、渲染、声音、IO等系统分�
 - 并行
 - 并发
 - Task Graph
-- Std::Thread
+  - UE最强大的多线程框架，将任务抽象为Task
+  - UE内部使用了TBB，感觉这部分内容和TBB基本一致
+  - 详情见`FBaseGraphTask`、`FTaskThreadBase`
+
+- `FRunnableThread+FRunnable`
+  - 详情见`QueuedThreadPoolWrapper.h`，并不是很好用
+
 
 ## 渲染
 

@@ -327,6 +327,24 @@ struct TinyMetalEngineApp: App {
 
 ![MetalRender](Image/MetalRender.png)
 
+## GNM
+
+PS4平台的图形API库，做PS开发需要PS4_DevKit SDK、Taskbar Application、PS开发机，几乎没有公开的文档和SDK下载方式（可以去暗网找黑客买，之前他们攻击游戏公司时流出了相关SDK和license）
+
+- Gnm Library
+- Gnmx Library
+- GpuAddress Library
+- ShaderBinary Library
+- Gnf Library
+
+## XDK
+
+Xbox主机的开发工具，只需要[19刀](https://learn.microsoft.com/en-us/windows/uwp/gaming/getting-started)，就能成为永久合作者，在零售Xbox主机制作调试游戏、应用程序
+
+你可以使用Win32、UWP、Unity、HTML/JS进行游戏、应用程序的开发开发
+
+[Xbox UWP](https://learn.microsoft.com/en-us/windows/uwp/xbox-apps/)
+
 ## 参考
 
 [龙书代码](https://github.com/d3dcoder/d3d12book)
