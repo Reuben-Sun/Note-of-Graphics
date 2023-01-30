@@ -25,13 +25,23 @@
 
 在这本笔记中，我试图形成自己的方法论，不只是抄大佬的项目，洗他们的稿，而是努力让这些为我所用
 
-### 三：《TA面试题》
+### 三：《图形学论文阅读》
+
+[开始阅读](https://github.com/Reuben-Sun/Note-of-Paper)
+
+更近一步的图像知识
+
+### 四：《TA面试题》
 
 [开始阅读](https://github.com/Reuben-Sun/Note-of-Graphics/blob/main/TA%E9%9D%A2%E8%AF%95%E9%A2%98.md#ta%E9%9D%A2%E8%AF%95%E9%A2%98)
 
 以问答的形式来记录一些零散的知识点，内容上更加碎片化和简洁（简单）
 
-### 四：《UE学习笔记》
+### 五：《Unity Shader》
+
+干了一段时间的引擎，结果连Shader都不会写了
+
+### 六：《UE学习笔记》
 
 [开始阅读](https://github.com/Reuben-Sun/Note-of-Graphics/blob/main/UE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md#ue%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0)
 
@@ -39,7 +49,7 @@
 
 只不过最近有些鸽，没怎么更新
 
-### 五：《DCC工具开发笔记》
+### 七：《DCC工具开发笔记》
 
 [开始阅读](https://github.com/Reuben-Sun/Note-of-Graphics/blob/main/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0.md#dcc%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0)
 
@@ -47,7 +57,7 @@
 
 工具向TA是一个很大的工种，像maya python插件、houdini、SD都是TA找工作必备的技能，然而这些工具的用户大多为美术，所以在学习时会被大量美术教程干扰（尤其是各种卖课的），真正程序向资料反而很稀缺，我努力整理了一点
 
-### 六：《性能优化笔记》
+### 八：《性能优化笔记》
 
 [开始阅读](https://github.com/Reuben-Sun/Note-of-Graphics/blob/main/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0.md#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0)
 
@@ -55,20 +65,21 @@
 
 我对这东西不是很熟，只是在工作时偶尔用到。在正式项目中，Rumtime的功能一般都要做性能测试才能交付，尤其是做手游，性能预算比较小时，真的很重要
 
-### 七：《光学》
+### 九：《光学》
 
 [开始阅读](https://github.com/Reuben-Sun/Note-of-Optics#note-of-optics)
 
 研究基于物理的渲染，必然要先研究物理
 
-### 八：《物理动画》
+### 十：《物理动画》
 
 [开始阅读](https://github.com/Reuben-Sun/Note-of-Graphics/blob/main/%E7%89%A9%E7%90%86%E5%8A%A8%E7%94%BB.md)
 
 物理动画相当有前途，发展迅猛，而且相对紧缺（这句话有时效性），只不过门槛比较高，不是很容易学，我也不是做这方面的，基本就了解了解概念，大部分内容都是直接抄的
 
-### 九：《图形API》
+### 十一：《图形API》
 
 作为一个游戏引擎，尤其是图形引擎，必须熟练掌握各种图形API，主要介绍了DX12、Metal图形库
 
 [开始阅读](https://github.com/Reuben-Sun/Note-of-Graphics/blob/main/%E5%9B%BE%E5%BD%A2API.md)
+
